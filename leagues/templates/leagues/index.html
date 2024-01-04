@@ -3,7 +3,7 @@
 	<head>
 		<title>Sports Leagues</title>
 	</head>
-	<body>
+	<body style="background-color: rgb(51, 51, 51); color: white;">
 		<h1>Leagues</h1>
 		<ol>
 			{% for league in leagues %}
@@ -26,6 +26,104 @@
 				<li>{{player.first_name}} {{player.last_name}}</li>
 			{% empty %}
 				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</ol>
+		<h1>Baseball Leagues</h1>
+		<ol>
+			{% for baseball_league in baseball_leagues %}
+				<li>{{baseball_league.name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Women Leagues</h1>
+		<ol>
+			{% for league in women_leagues %}
+				<li>{{league.name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Hockey Leagues</h1>
+		<ol>
+			{% for league in hockey_leagues %}
+				<li>{{league.name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Non-Football Leagues</h1>
+		<ol>
+			{% for league in not_football_leagues %}
+				<li>{{league.name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Conferences</h1>
+		<ol>
+			{% for league in conferences %}
+				<li>{{league.name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Atlantic Leagues</h1>
+		<ol>
+			{% for league in atlantic_leagues %}
+				<li>{{league.name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Dallas Teams</h1>
+		<ol>
+			{% for team in dallas_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Raptors</h1>
+		<ol>
+			{% for team in raptors %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Teams Whose Location Includes "City"</h1>
+		<ol>
+			{% for team in includes_city %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Teams Whose Name Starts With "T"</h1>
+		<ol>
+			{% for team in starts_t %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Teams Ordered Alphabetically by Location</h1>
+		<ol>
+			{% for team in abc_location %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>Teams Ordered Reverse-Alphabetically by Team Name</h1>
+		<ol>
+			{% for team in reverse_abc_name %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>All Players with the Last Name "Cooper"</h1>
+		<ol>
+			{% for player in cooper_last %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>All Players with the First Name "Joshua"</h1>
+		<ol>
+			{% for player in joshua_first %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>All Players with the Last Name "Cooper" EXCEPT Those with the First Name "Joshua"</h1>
+		<ol>
+			{% for player in cooper_last %}
+				{% if player.first_name != "Joshua" %}
+					<li>{{player.first_name}} {{player.last_name}}</li>
+				{% endif %}
+			{% endfor %}
+		</ol>
+		<h1>All Players Named "Alexander" or "Wyatt"</h1>
+		<ol>
+			{% for player in alexander_or_wyatt %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
 			{% endfor %}
 		</ol>
 	</body>
