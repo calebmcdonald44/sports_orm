@@ -208,5 +208,17 @@
 				<li>{{player.first_name}} {{player.last_name}}</li>
 			{% endfor %}
 		</ol>
+		<h1>All Teams That Have Had at Least 12 Players (past and present)</h1>
+		<ol>
+			{% for team in twelve_or_more %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h1>All Players and Amount of Teams They've Played For</h1>
+		<ol>
+			{% for player in player_team_count %}
+				<li>{{player.first_name}} {{player.last_name}}: {{player.team_count}}</li>
+			{% endfor %}
+		</ol>
 	</body>
 </html>

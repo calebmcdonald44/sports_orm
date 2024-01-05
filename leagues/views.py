@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import League, Team, Player
-from django.db.models import Q
+from django.db.models import Q, Count
 from . import team_maker
 
 def index(request):
@@ -36,6 +36,9 @@ def index(request):
 		"former_vikings": Player.objects.filter(Q(all_teams__team_name="Vikings") & ~Q(curr_team__team_name="Vikings")),
 		"jacob_gray_former": Team.objects.filter(Q(all_players__first_name="Jacob") & Q(all_players__last_name="Gray")),
 		"AFABP_joshua": Player.objects.filter(first_name="Joshua").filter(all_teams__league__name="Atlantic Federation of Amateur Baseball Players"),
+		"twelve_or_more": Team.objects.annotate(player_count=Count('all_players')).filter(player_count__gt=11),
+		"player_team_count": Player.objects.annotate(team_count=Count('all_teams')).order_by('team_count'),
+
 	}
 	return render(request, "leagues/index.html", context)
 
